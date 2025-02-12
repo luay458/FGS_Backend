@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FGS</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <!-- Bootstrap CSS (optional; remove if you’re using your own styles) 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"-->
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Fortis Global Systems</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Services</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'quality_assurance' %}">Quality Assurance</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'about_us' %}">About Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'our_responsibility' %}">Our Responsibilites</a></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container mt-4">
+    {% block content %}
+    <!-- Page-specific content goes here -->
+    {% endblock %}
+  </div>
+
+  <!-- Footer with Contact Form and Why Choose Section -->
+  <footer class="bg-dark text-white mt-5">
+    <div class="container py-4">
+      <div class="row">
+        <!-- Contact Us Section -->
+        <div class="col-md-6">
+          <h5>Contact Us</h5>
+          <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="contactName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="contactName" name="name" required>
+            </div>
+            <div class="mb-3">
+              <label for="contactEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="contactEmail" name="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="contactMessage" class="form-label">Message</label>
+              <textarea class="form-control" id="contactMessage" name="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+        <!-- Why Choose Fortis Global Systems Section -->
+        <div class="col-md-6">
+          <h5>Why Choose Fortis Global Systems?</h5>
+          <p>
+            We pride ourselves on delivering exceptional service, innovative solutions, and a commitment to quality and sustainability. Our experienced team and customer-first approach ensure that your business receives the best possible support.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* Make sure the html and body take full height */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Create a wrapper that covers the full viewport height */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* The content area will take up the remaining space */
+.content {
+    flex: 1;
+}
