@@ -1,0 +1,134 @@
+body, html, button, a, input, textarea{
+    font-weight: 300;
+    color: #000000;
+    font-family: 'Source Code Pro', monospace;
+}
+.nav-links a, .footer-nav-links a, .menu-toggle, footer {
+    color: #ffffff;
+}
+
+/* Navigation Bar */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links a , .footer-nav-links a {
+    text-decoration: none;
+    font-size: 1em;
+} .nav-links a:hover, .footer-nav-links a:hover {
+    color: #bfbcaca4;
+}
+.menu-toggle {
+    font-size: 1vw;
+}
+
+/* Base Content */
+#main-content {
+}
+h2, p {
+    text-align: center;
+}
+h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2.2em;
+} 
+p {
+    font-weight: 400;
+    font-size: 1.5em;
+}
+.smaller{
+    font-weight: 300;
+    font-size: 1.3em;
+}
+
+/* Services HTML */
+.bullet-container, .simple-bullets li {
+    font-weight: 350;
+    font-size: 1.3em;
+}
+
+.areas-covered-container {
+    font-size: 0.8em;
+}
+
+/* Footer */
+h5, .footer-text {
+    text-align: start;
+}
+h5 {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.2em;
+} 
+.footer-text {
+    font-size: 1em;
+}
+input, textarea {
+    font-weight: 500;
+}
+
+
+/* Hide nav links on small screens */
+@media screen and (orientation: portrait) {
+    /* NAVIGATION BAR*/
+    .nav-links a, .footer-nav-links a{
+        font-size: 0.9em;
+    }.nav-links a:hover, .footer-nav-links a:hover {
+        font-size: 0.9em;
+        border: none !important;
+    }
+    
+    
+    .footer-nav-links{
+        padding: 0;
+        width: 100%;
+        font-size: 0.5em;
+        justify-content: center;  
+    }
+    .footer-nav-links li, .footer-nav-links a{
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .menu-toggle {
+        z-index: 8;
+        font-size: 2em;
+    }
+    /* MAIN */
+    h2 {
+        font-weight: 450;
+        font-size: 1.5em;
+    } 
+    p {
+        font-weight: 400;
+        font-size: 1em;
+    }
+    .smaller{
+        font-weight: 400;
+        font-size: 1em;
+    }
+    
+    /* Services HTML */
+    .bullet-container {
+        font-weight: 450;
+        font-size: 0.8em;
+    }
+
+    .areas-covered-container {
+        font-weight: 350;
+        font-size: 0.9em;
+    }   
+
+    /* FOOTER */
+    h5 {
+        font-weight: 400;
+        font-size: 1em;
+    } 
+    .footer-text {
+        font-size: 0.8em;
+    }
+}

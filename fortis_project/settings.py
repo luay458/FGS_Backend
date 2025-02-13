@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-njv+0resxzfy6t+lx7&l#)&vk7#^k$+9w8g1g7m9xdnicu1k^&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['192.168.86.248', '127.0.0.1', 'localhost',
                  "fgs-website.onrender.com",  # Render app URL
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -83,6 +84,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Collects all static files
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "main", "static"),  # Make sure this directory exists
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
