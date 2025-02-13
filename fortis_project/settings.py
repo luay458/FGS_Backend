@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-njv+0resxzfy6t+lx7&l#)&vk7#^k$+9w8g1g7m9xdnicu1k^&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.86.248', '127.0.0.1', 'localhost',
                  "fgs-website.onrender.com",  # Render app URL
@@ -75,15 +75,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'fortis_project.wsgi.application'
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.1/howto/static-files/
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Collects all static files here
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "main", "static"),  # Make sure this directory exists
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+
 }
 
 
@@ -117,15 +127,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Collects all static files here
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "main", "static"),  # Make sure this directory exists
-]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
