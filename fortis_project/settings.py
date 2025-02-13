@@ -29,7 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['192.168.86.248', '127.0.0.1', 'localhost',
                  "fgs-website.onrender.com",  # Render app URL
                  "fortisglobalsystems.com",  # Your root GoDaddy domain
-                 "www.fortisglobalsystems.com",  # Your GoDaddy subdomain]
+                 "www.fortisglobalsystems.com"  # Your GoDaddy subdomain
+                ]
 
 # Application definition
 
