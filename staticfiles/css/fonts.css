@@ -53,7 +53,7 @@ p {
     font-size: 1em;
 }
 .areas-covered-container {
-    font-size: 0.6em;
+    font-size: 0.8em;
 }
 
 /* ============================================================================================================ */
@@ -68,13 +68,13 @@ h5 {
     font-size: 0.9em;
 } 
 .footer-text {
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 input, textarea {
     font-weight: 500;
 }
 p.thanks-msg{
-    font-size: 0.6em !important;
+    font-size: 0.9em !important;
 }
 
 /* Hide nav links on small screens */

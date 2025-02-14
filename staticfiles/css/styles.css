@@ -313,7 +313,7 @@ footer {
     padding: 2% 4%;
     
     border-radius: 5px;
-    background-color: #ffffff05;
+    background-color: #0c0c0c07;
     box-shadow: 5.4px 10.9px 10.9px hsl(0deg 0% 0% / 0.33);
 }
 /* ===================================================== */
@@ -434,3 +434,26 @@ li {
         max-width: 50%;
     }    
 }
+
+
+
+
+
+/* Custom Scroll Bar*/
+::-webkit-scrollbar {
+    width: .5vw;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #00000020;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 1vh;
+    cursor: pointer;
+    background: #09090950;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #696969;
+}  

@@ -434,3 +434,26 @@ li {
         max-width: 50%;
     }    
 }
+
+
+
+
+
+/* Custom Scroll Bar*/
+::-webkit-scrollbar {
+    width: .5vw;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #00000020;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 1vh;
+    cursor: pointer;
+    background: #09090950;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #696969;
+}  
