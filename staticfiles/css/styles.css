@@ -314,7 +314,7 @@ footer {
     
     border-radius: 5px;
     background-color: #0c0c0c07;
-    box-shadow: 5.4px 10.9px 10.9px hsl(0deg 0% 0% / 0.33);
+    box-shadow: rgba(0, 0, 0, 0.4) 3px 4px 8px;
 }
 /* ===================================================== */
 /* Container for titles*/
