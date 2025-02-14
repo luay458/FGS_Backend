@@ -3,33 +3,8 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm
+from django.contrib import messages  # import messages
 
-def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            # Extract validated form data
-            name = form.cleaned_data['name']
-            email = form.cleaned_data['email']
-            message = form.cleaned_data['message']
-            
-            # Create an email subject and body
-            subject = f"Contact Form Submission from {name}"
-            full_message = f"Message from {name} ({email}):\n\n{message}"
-            
-            # Send email (ensure these settings are configured securely in your settings)
-            send_mail(
-                subject,
-                full_message,
-                settings.DEFAULT_FROM_EMAIL,  # Use an environment variable here!
-                [settings.CONTACT_EMAIL]        # Define a recipient email in your settings
-            )
-            # Redirect to a thank-you page or back to home
-            return redirect('contact_thanks')
-    else:
-        form = ContactForm()
-    
-    return render(request, 'contact.html', {'form': form})
 
 def home(request):
     return render(request, 'home.html')
@@ -49,11 +24,26 @@ def our_responsibility(request):
 # View to handle the contact form submission
 def contact(request):
     if request.method == 'POST':
-        # Process form data here (e.g., send an email)
         name = request.POST.get('name')
         email = request.POST.get('email')
-        message = request.POST.get('message')
-        # For now, simply print the data to the console (or add email functionality)
-        print(f"Contact Form Submitted: {name}, {email}, {message}")
-        # Optionally, you can add a success message or redirect
-    return render(request, 'home.html')  # Redirect or render a thank-you page as needed
+        message_content = request.POST.get('message')
+        
+        print(f"Contact Form Submitted: {name}, {email}, {message_content}")
+        
+        subject = f"Contact Form Submission from {name}"
+        message = f"Message from {name} ({email}):\n\n{message_content}"
+        
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [settings.CONTACT_EMAIL],
+        )
+        
+        # Add a success message that will trigger the popup
+        messages.success(request, "Thanks for sending your message! We'll get back to you as soon as we can!")
+        
+        # Render the same template so the message appears as a popup
+        return render(request, 'home.html')
+    
+    return render(request, 'home.html')

@@ -43,7 +43,9 @@ p {
     font-weight: 300;
     font-size: 1.3em;
 }
-
+p.thanks-msg{
+    font-size: 0.9em !important;
+}
 /* Services HTML */
 .bullet-container, .simple-bullets li {
     font-weight: 350;

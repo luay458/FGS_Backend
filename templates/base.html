@@ -62,28 +62,17 @@
         <div class="container" id="footer-content">
             <div class="footer-section">
                 <h5>Contact Us</h5>
+                <div class="thanks-msg-container"><p class="thanks-msg">Thanks for sending your message! We'll get back to you as soon as we can!</p></div>
                 <form class="contact-form" action="{% url 'contact' %}" method="post">
-                  {% csrf_token %}
-                  <div>
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
-                    {{ form.name.errors }}
-                  </div>
-                  <div>
-                    {{ form.email.label_tag }}
-                    {{ form.email }}
-                    {{ form.email.errors }}
-                  </div>
-                  <div>
-                    {{ form.message.label_tag }}
-                    {{ form.message }}
-                    {{ form.message.errors }}
-                  </div>
-                  <div class="submit-text-container">
-                    <button type="submit">Send Message</button>
-                  </div>
+                    {% csrf_token %}
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <div class="submit-text-container">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <button type="submit">Send Message</button>
+                    </div>
                 </form>
-              </div>
+            </div>
             <div class="footer-section">
                 <h5>Why Choose Fortis Global Systems?</h5>
                 <p class="footer-text">We provide innovative solutions, quality service, and a commitment to sustainability.</p>
