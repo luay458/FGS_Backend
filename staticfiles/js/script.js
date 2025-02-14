@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function scrollDown() {
-  smoothScrollTo(window.innerHeight, 1000);
+  smoothScrollTo(window.innerHeight, 500);
 }
 
 let scrollAnimationFrameId = null;
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Only auto-scroll if scrolling down and within the first viewport
     if (e.deltaY > 0 && window.scrollY < window.innerHeight) {
       e.preventDefault();
-      smoothScrollTo(window.innerHeight, 1320);
+      smoothScrollTo(window.innerHeight, 500);
     }
   }, { passive: false });
 });

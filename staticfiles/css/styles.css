@@ -1,78 +1,242 @@
-/* General Styles */
+/* ============================================================================================================ */
+/* GENERAL STYLES */
+/* ============================================================================================================ */
 body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+
     background-color: #c3c1bf;
 }
-
 header, footer {
-    z-index: 10;
+    z-index: 10; /* Make sure the header and footer are always above everything else */
 }
 
-.homelink{
-    cursor: pointer;
-}
-
-
-/* Background Image*/
+/* ============================================================================================================ */
+/* HEADER AND FOOTER */
+/* ============================================================================================================ */
 header {
+    /* Making sure the header stays on top of the screen with position and z-index */
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100; 
+    /* Background Image*/
     background-image: url("../images/backgroundImage.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-
-/* Navigation Bar */
-header{
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1000;  
+/* ===================================================== */
+/* Ensures both containers have the same overlay to look seamless */
+.navbar, .down-container {    
+   /* Color and blur will overlay the bg image which is in header */
+   background: #050505b4;
+   backdrop-filter: blur(2px);
 }
+/* Navbar is the container that holds everything on the top of the screen */
+.navbar {
+ 
+    display: flex;
+    align-items:flex-start;
 
+    transform: translateY(0) scale(1);
+    height: auto;
+    padding: 10px;
+
+    box-shadow: 1.8px 3.7px 3.7px hsl(0deg 0% 0% / 0.44);
+}
+/* When on the home page, navbar will take up the entire screen height */
+.home-page header .navbar {
+    height: calc(75vh - 20px); /* Calculations are to account for the down button container and padding of the navbar */
+    box-shadow: none;
+}
+/* ===================================================== */
+/* Container that holds the logo and navigation buttons, row is to ensure they stay side by side not stacked on top */
+/* ===================================================== */
 .nav-container{
     display: flex;
     flex-direction: row;
 }
-
-.navbar {
-    background: #050505b4;
-    backdrop-filter: blur(2px);
-    display: flex;
-    align-items:flex-start; /* or adjust as needed */
-    transition: transform 0.3s ease, padding 0.3s ease;
-    transform: translateY(0) scale(1);
-    height: auto;
-    transition: height 0.3s ease;
-    padding: 10px;
+/* Container that holds the logo */
+.homelink{
+    cursor: pointer; /* The logo image links to home, cursor should point to show this */
 }
-
-/* On the home page, navbar is taller */
-.home-page header .navbar {
-    height: calc(75vh - 20px);
+/* Larger logo on the homepage (top left homelink) */
+.home-page header .logo-image {
+    width: 25vw; 
 }
-
+/* When on every page other than home, it's smaller */
 .logo-image{
     width: 18vw;
 }
-/* On the home page, override to use a larger width */
-.home-page header .logo-image {
-    width: 25vw; /* or any value you prefer */
-}
+/* ===================================================== */
+/* The navigation menu buttons container for the header and footer in their respective order */
+/* ===================================================== */
+.nav-links, .footer-nav-links {
+    display: flex;
+    align-items: end;
 
-.down-container{
+    list-style: none;
+    /* Removing default margins and padding from ul*/
+    padding: 0;
+    margin: 0;
+}
+.nav-links{
+    width: 72vw; /* Width just before end of screen in x-axis */
+    justify-content: end;
+}
+.footer-nav-links{
+    justify-content: center;
+    width: 100%;
+}
+/* The navigation menu buttons for the header and footer in their respective order */
+.nav-links a , .footer-nav-links a {
+    margin: 0px 5px;
+    padding: 3px 5px;
+
+    border-radius: 3px;
+}
+.nav-links a:hover {
+    border-color: #4a4a4a93;
+    background-color: #dbcbcb2e; /* Background color for header menu buttons only */
+} 
+.nav-button.active {
+    border-bottom: 2px solid #fff; /* Underline for whichever header button is selected */
+}
+.footer-nav-links a{
+    border-style: none;
+    background-color: #00000000;
+}
+/* Separator for footer nav buttons - e.g " Home | Services | About Us" */
+ul.footer-nav-links li:not(:last-child)::after {
+    content: "|";
+    margin-right: 1px; 
+    font-size: 1.5em;
+}
+/* Create a pseudo-element that will serve as the animated underlined border - will only begin animation on hover */
+.nav-button::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0); /* Start with scale 0, centered horizontally */
+    transform-origin: center; /* Expand from center */
+    width: 100%; /* Full width */
+    height: 2px; /* Adjust thickness as desired */
+    background-color: #fff; /* Border color */
+    transition: transform 0.3s ease; /* Adjust timing and easing as needed */
+}
+/* On hover, animate the pseudo-element to scale to full width */
+.nav-button:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+.nav-button {
+    position: relative; /* Makes sure the animation sticks to the button itself */
+}  
+/* Phone only - hide the menu buttons and instead display a dropdown */
+.menu-toggle {
     display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+/* ===================================================== */
+/* Footer Only */
+/* ===================================================== */
+/* Centers All Containers in the footer*/
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.footer {
+    background: #1a1a1a;
+    padding: 20px;
+    text-align: center;
+}
+/* The container in footer - below the footer nav buttons */
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+}
+/* ===================================================== */
+/* Each section in the footer container takes up half of the container's width - change if # items increases*/
+.footer-section {
+    width: 50%;
+}
+/* Contact Form */
+.footer form {
+    display: flex;
+}
+.contact-form{
+    max-width: 90%;
+}
+/* Separate stacked container of the name, email, and submit button */
+.submit-text-container{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    min-width: 30%;
+    max-width: 40%;
+    margin-left: 10px;
+}
+/* ===================================================== */
+/* Text Input customization */
+.footer input, .footer textarea {
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 4px 5px hsl(0deg 0% 0% / 0.40) inset;
+}
+/* Submit button*/
+.footer button {
+    padding: 10px;
+    cursor: pointer;
+    
+    border: none;
+    border-radius: 5px;
+    background: #ff6600;
+    box-shadow: 6px 6px 12.6px hsl(0deg 0% 0% / 0.90);
+}
+.footer button:hover {
+    background: #cc550074;
+}
+.thanks-msg-container {
+    display: none;
+} .thanks-msg-container.submit{
+    display: flex;
+}
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10%, 80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+/* ===================================================== */
+/* Down button image only*/
+/* ===================================================== */
+/* Container which holds the down button, takes up the remaining bottom of the screen left by header, only shows at home */
+.down-container{
+    display: none; /* Default display until home is selected */
+    justify-content: center;
+    align-items: center;
+
     height: 20vh;
     padding: 5vh 5vh 0 0 ;
-    background: #050505b4;
-    backdrop-filter: blur(2px);
 }
 /* Show down-container on the home page */
 .home-page .down-container {
-    display: flex; /* or block, depending on your layout */
+    display: flex;
 }
+/* The down button image, below are the animations and size of the image */
 .down-image{
     cursor: pointer;
     width: 5%;
@@ -96,215 +260,9 @@ header{
     100% {
       transform: translateY(0);
     }
-  }
-  
+}
 .down-image {
-animation: bounceAnimation 5s infinite;
-}
-ul{
-    padding: 0;
-}
-
-.nav-links, .footer-nav-links {
-    justify-content: end;
-    list-style: none;
-    display: flex;
-    align-items: end;
-    width: 72vw;    
-}
-
-.nav-links a , .footer-nav-links a {
-    border-radius: 3px;
-    padding: 3px 5px;
-    margin: 0px 5px;
-}  .nav-links a:hover {
-    border-color: #4a4a4a93;
-    background-color: #dbcbcb2e;
-} .nav-button.active {
-    border-bottom: 2px solid #fff; /* Adjust color and thickness as needed */
-}
-
-.nav-button {
-    position: relative; /* Ensure the pseudo-element is positioned relative to the button */
-}
-  
-/* Create a pseudo-element that will serve as the animated border */
-.nav-button::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%) scaleX(0); /* Start with scale 0, centered horizontally */
-    transform-origin: center; /* Expand from center */
-    width: 100%; /* Full width */
-    height: 2px; /* Adjust thickness as desired */
-    background-color: #fff; /* Your border color */
-    transition: transform 0.3s ease; /* Adjust timing and easing as needed */
-}
-  
-/* On hover, animate the pseudo-element to scale to full width */
-.nav-button:hover::after {
-    transform: translateX(-50%) scaleX(1);
-}
-
-.logo-only{
-    background-image: url("../images/backgroundImage.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* Set up transitions for both elements */
-header .logo-only,
-header .navbar {
-    transition: opacity 0.1s ease;
-}
-header .logo-only {
-    opacity: 0;
-    position: absolute;
-}
-header .navbar {
-    opacity: 1;
-}
-
-/* Scrolled state: reverse opacity values */
-.hidden-container {
-    background: #050505b4; /* or another color with transparency */
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-}
-#on-scroll{
-    width: 15vw;
-}
-
-.footer-nav-links a{
-    border-style: none;
-    background-color: #00000000;
-}
-
-
-ul.footer-nav-links li:not(:last-child)::after {
-    content: "|";
-    margin-right: 1px; 
-}
-
-
-/* Responsive Navigation, set up on phone only */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* Main Content */
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-/* Main Content Container */
-#main-content{
-    padding: 20px;
-    min-width: 40vw;
-    max-width: 60vw;
-    min-height: 20vw;
-    max-height: 100%;
-    border-radius: 5px;
-}
-.div-container{
-    margin-bottom: 30px;
-    border-radius: 3px;
-    padding: 5px;
-    color: #3a3a3a;
-    background-color: #8f92958d;
-}
-.bullets, .simple-bullets{
-    margin-bottom: 30px;
-    border-radius: 3px;
-    padding: 5px;
-    color: #3a3a3a;
-    background-color: #b1b1b086;
-}
-.bullet-container{
-    max-width: 80%;
-    justify-content: center;
-    list-style:inside;
-    padding: 0;
-    margin: auto;
-}
-
-
-li {
-    margin-bottom: 2.5%;
-}
-
-
-/* Footer */
-.footer {
-    background: #1a1a1a;
-    padding: 20px;
-    text-align: center;
-}
-
-.footer .container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.footer-section {
-    width: 45%;
-}
-
-/* Contact Form */
-.footer form {
-    display: flex;
-
-}
-.contact-form{
-    max-width: 80%;
-}
-.submit-text-container{
-    display: flex;
-    flex-direction: column;
-    min-width: 30%;
-    max-width: 40%;
-    margin-left: 10px;
-    justify-content: center;
-    align-items: center;
-}
-
-.footer input, .footer textarea {
-    width: 100%;
-    padding: 5px;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-}
-
-.footer button {
-    padding: 10px;
-    background: #ff6600;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.footer button:hover {
-    background: #cc550074;
-}
-
-/* Ensure footer sticks to bottom */
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.content {
-    flex: 1;
+    animation: bounceAnimation 5s infinite;
 }
 
 /* Thanks for contacting 
@@ -324,74 +282,140 @@ html, body {
     animation: fadeInOut 5s forwards;
 }
 */
-.thanks-msg-container {
-    display: none;
-} .thanks-msg-container.submit{
+
+/* ============================================================================================================ */
+/* MAIN CONTENT */
+/* ============================================================================================================ */
+.content {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex: 1; /* Expand size to fill remaining area*/
+    
+    padding: 20px;
+    box-shadow: 3px 0px 4px hsl(0deg 0% 0% / 0.54) inset;
 }
-@keyframes fadeInOut {
-    0% { opacity: 0; }
-    10%, 80% { opacity: 1; }
-    100% { opacity: 0; }
+/* ===================================================== */
+/* Main Content Container */
+#main-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 40vw;
+    max-width: 60vw;
+
+    min-height: 20vw;
+    max-height: 100%;
+    
+    padding: 2% 4%;
+    
+    border-radius: 5px;
+    background-color: #ffffff05;
+    box-shadow: 5.4px 10.9px 10.9px hsl(0deg 0% 0% / 0.33);
 }
+/* ===================================================== */
+/* Container for titles*/
+.title-container{
+    margin: 20px 0;
+    padding: 5px;
+
+    border-radius: 3px;
+
+    color: #3a3a3a;
+    background-color: #8f92958d;
+    box-shadow: 1.8px 3.7px 3.7px hsl(0deg 0% 0% / 0.44);
+}
+/* ===================================================== */
+/* Container for all bullet points */
+.bullet-container{
+    max-width: 80%;
+    justify-content: center;
+    list-style:inside;
+    padding: 0;
+    margin: auto;
+}
+/* Each bullet point*/
+.bullets, .simple-bullets{
+    margin-bottom: 30px;
+    border-radius: 3px;
+    padding: 5px;
+
+    color: #3a3a3a;
+    background-color: #b1b1b086;
+    box-shadow: 2px 3px 5px hsl(0deg 0% 0% / 0.33) inset;
+}
+li {
+    margin-bottom: 2.5%;
+}
+
+
 
 /* Hide nav links on small screens */
 @media screen and (orientation: portrait) {
-    
-    /* On the home page, navbar is taller */
+    /* ============================================================================================================ */
+    /* HEADER */
+    /* ============================================================================================================ */
+    /* On the home page, navbar is no longer taller */
     .home-page header .navbar {
         height: auto;
     }
-
     .navbar {
         padding: 5px 20px;
         background: #050505bb;
         justify-content: right;
         align-items: center;
     }
-    
     .home-page header .logo-image, .logo-image{
-        width: 80%;
+        width: 80%; /* Adjusting logo size for smaller screens*/
     }
-
+    /* No more down button */
+    .home-page .down-container{
+        display: none;
+    }
+    /* Removing menu buttons, adjusting styles to fit in a box for the drop down */
     .nav-links {
         display: none;
         flex-direction: column;
+
         position: absolute;
-        background: #222222eb;
         top: 2vh;
         right: 15vw;
-        border-radius: 5px;
-        padding: 1vh 2vw;
-    }
 
+        padding: 1vh 2vw;
+        border-radius: 5px;
+        
+        background: #222222eb;
+        box-shadow: 1.6px 3.2px 3.2px hsl(0deg 0% 0% / 0.45);
+    }
     .nav-links li, .footer-nav-links li {
         margin: 0.3vh 0;
-    } 
+    }
     .nav-links a, .footer-nav-links a{
         border: none;
         margin: 0;
         background-color: #ffffff00;
     }
-
+    /* Now the menu dropdown is displayed*/
     .menu-toggle {
         display: block;
         margin-right: 10vw;
 
     }
-
-    .home-page .down-container{
-        display: none;
-    }
-
+    /* ============================================================================================================ */
+    /* MAIN */
+    /* ============================================================================================================ */
     #main-content{
         max-width: 100%;
     }
-
     .bullet-container{
         max-width: 100%;
     }
-
+    /* ============================================================================================================ */
+    /* FOOTER */
+    /* ============================================================================================================ */
     #footer-content{
         display: flex;
         flex-direction: column;
