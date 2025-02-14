@@ -33,12 +33,17 @@ def contact(request):
         subject = f"Contact Form Submission from {name}"
         message = f"Message from {name} ({email}):\n\n{message_content}"
         
-        send_mail(
-            subject,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [settings.CONTACT_EMAIL],
-        )
+        try:
+            send_mail(
+                subject,
+                message,
+                settings.DEFAULT_FROM_EMAIL,
+                [settings.CONTACT_EMAIL],
+            )
+        except Exception as e:
+            print("Error sending email:", e)
+            # Optionally log the error and return an appropriate response.
+            return HttpResponseServerError("An error occurred while sending your message.")
         
         # Add a success message that will trigger the popup
         messages.success(request, "Thanks for sending your message! We'll get back to you as soon as we can!")
