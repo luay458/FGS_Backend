@@ -15,18 +15,18 @@ body, html, button, a, input, textarea{
 /* NAVIGATION BAR */
 /* ============================================================================================================ */
 .logo {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
     text-decoration: none;
 }
 .nav-links a , .footer-nav-links a {
     text-decoration: none;
-    font-size: 1.5vw;
+    font-size: 1.2vw;
 } .nav-links a:hover, .footer-nav-links a:hover {
     color: #bfbcaca4;
 }
 .menu-toggle {
-    font-size: 1vw;
+    font-size: 0.8vw;
 }
 
 /* ============================================================================================================ */
@@ -38,22 +38,22 @@ h2, p {
 h2 {
     text-transform: uppercase;
     font-weight: 300;
-    font-size: 2.2em;
+    font-size: 1.9em;
 } 
 p {
     font-weight: 400;
-    font-size: 1.5em;
+    font-size: 1.1em;
 }
 .smaller{
     font-weight: 300;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .bullet-container, .simple-bullets li {
     font-weight: 350;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 .areas-covered-container {
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 /* ============================================================================================================ */
@@ -65,16 +65,16 @@ h5, .footer-text {
 h5 {
     text-transform: uppercase;
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 0.9em;
 } 
 .footer-text {
-    font-size: 1em;
+    font-size: 0.7em;
 }
 input, textarea {
     font-weight: 500;
 }
 p.thanks-msg{
-    font-size: 0.9em !important;
+    font-size: 0.6em !important;
 }
 
 /* Hide nav links on small screens */
