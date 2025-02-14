@@ -15,28 +15,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200..900&display=swap" rel="stylesheet">    
 </head>
-<body>
+<body class="{% if request.resolver_match.url_name == 'home' %}home-page{% endif %}">
     <div class="bg-image-container"></div>
 
     <header id="header">
+        
+        <!--div class="logo-only" onclick="window.location='{% url 'home' %}'"><div class="hidden-container">
+            <img class="logo-image" id="on-scroll" src="{% static 'images/LogoRectangle.png' %}" alt="Fortis Global Systems">
+            <div class="bg-overlay"></div>
+        </div> </div-->
+
         <nav class="navbar">
             <div class="nav-container">
                 <div class="homelink" onclick="window.location='{% url 'home' %}'">
                     <img class="logo-image" src="{% static 'images/LogoRectangle.png' %}" alt="Fortis Global Systems">
                 </div>
                 <ul class="nav-links">
-                    <li><a class="nav-button" href="{% url 'home' %}">Home</a></li>
-                    <li><a class="nav-button" href="{% url 'services' %}">Services</a></li>
-                    <li><a class="nav-button" href="{% url 'quality_assurance' %}">Quality Assurance</a></li>
-                    <li><a class="nav-button" href="{% url 'about_us' %}">About Us</a></li>
-                    <li><a class="nav-button" href="{% url 'our_responsibility' %}">Our Responsibilites</a></li>
-                </ul>
+                    <li><a class="nav-button {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Home</a></li>
+                    <li><a class="nav-button {% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'services' %}">Services</a></li>
+                    <li><a class="nav-button {% if request.resolver_match.url_name == 'quality_assurance' %}active{% endif %}" href="{% url 'quality_assurance' %}">Quality Assurance</a></li>
+                    <li><a class="nav-button {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}" href="{% url 'about_us' %}">About Us</a></li>
+                    <li><a class="nav-button {% if request.resolver_match.url_name == 'our_responsibility' %}active{% endif %}" href="{% url 'our_responsibility' %}">Our Responsibilites</a></li>                </ul>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         </nav>
+        <div class="down-container">
+            <img class="down-image" onclick="scrollDown()" src="{% static 'images/ScrollDown.png' %}" alt="Scroll Down">
+        </div>
     </header>
-
-    <div class="bg-overlay"></div>
 
     <main class="content">
         <div class="container" id="main-content">
@@ -57,15 +63,27 @@
             <div class="footer-section">
                 <h5>Contact Us</h5>
                 <form class="contact-form" action="{% url 'contact' %}" method="post">
-                    {% csrf_token %}
-                    <textarea name="message" placeholder="Your Message" required></textarea>
-                    <div class="submit-text-container">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
-                        <button type="submit">Send Message</button>
-                    </div>
+                  {% csrf_token %}
+                  <div>
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                  </div>
+                  <div>
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                  </div>
+                  <div>
+                    {{ form.message.label_tag }}
+                    {{ form.message }}
+                    {{ form.message.errors }}
+                  </div>
+                  <div class="submit-text-container">
+                    <button type="submit">Send Message</button>
+                  </div>
                 </form>
-            </div>
+              </div>
             <div class="footer-section">
                 <h5>Why Choose Fortis Global Systems?</h5>
                 <p class="footer-text">We provide innovative solutions, quality service, and a commitment to sustainability.</p>

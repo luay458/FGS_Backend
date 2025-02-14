@@ -1,4 +1,35 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
+from .forms import ContactForm
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Extract validated form data
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+            
+            # Create an email subject and body
+            subject = f"Contact Form Submission from {name}"
+            full_message = f"Message from {name} ({email}):\n\n{message}"
+            
+            # Send email (ensure these settings are configured securely in your settings)
+            send_mail(
+                subject,
+                full_message,
+                settings.DEFAULT_FROM_EMAIL,  # Use an environment variable here!
+                [settings.CONTACT_EMAIL]        # Define a recipient email in your settings
+            )
+            # Redirect to a thank-you page or back to home
+            return redirect('contact_thanks')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'contact.html', {'form': form})
 
 def home(request):
     return render(request, 'home.html')
