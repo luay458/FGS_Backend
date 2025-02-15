@@ -9,7 +9,6 @@ body, html {
     display: flex;
     flex-direction: column;
 
-    background-color: #c3c1bf2b;
 }
 header, footer {
     z-index: 10; /* Make sure the header and footer are always above everything else */
