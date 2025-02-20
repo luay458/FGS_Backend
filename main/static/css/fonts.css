@@ -2,13 +2,16 @@
 /* ============================================================================================================ */
 /* GENERAL FONTS*/
 /* ============================================================================================================ */
-body, html, button, a, input, textarea{
+body, html, button, a, input, textarea, .bullets, .simple-bullets{
     font-weight: 300;
-    color: #000000;
+    color: var(--font-1);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.nav-links a, .footer-nav-links a, .menu-toggle, footer {
-    color: #ffffff;
+.nav-links a, .footer-nav-links a, .menu-toggle, footer, button {
+    color: var(--font-2);
+}
+button:hover, #theme-toggle:hover{
+    color: var(--font-2-hover);
 }
 
 /* ============================================================================================================ */
@@ -21,12 +24,15 @@ body, html, button, a, input, textarea{
 }
 .nav-links a , .footer-nav-links a {
     text-decoration: none;
-    font-size: 1.2vw;
+    font-size: 1.3em
 } .nav-links a:hover, .footer-nav-links a:hover {
-    color: #bfbcaca4;
+    color: var(--font-3);
+}
+.footer-nav-links {
+    font-size: 0.9em;
 }
 .menu-toggle {
-    font-size: 0.8vw;
+    font-size: 8vw;
 }
 
 /* ============================================================================================================ */
@@ -71,7 +77,7 @@ h5 {
     font-size: 0.9em;
 }
 input, textarea {
-    font-weight: 500;
+    font-weight: 400;
 }
 p.thanks-msg{
     font-size: 0.9em !important;
@@ -82,34 +88,35 @@ p.thanks-msg{
     /* ============================================================================================================ */
     /* HEADER*/
     /* ============================================================================================================ */
-    .nav-links a, .footer-nav-links a{
-        font-size: 0.9em;
-    }.nav-links a:hover, .footer-nav-links a:hover {
-        font-size: 0.9em;
-        border: none !important;
+    .nav-links a{
+        font-size: 2.5vw; /* Adjusts for size of menu toggle and screen */
+        font-weight: 300;
     }
-    .menu-toggle {
-        z-index: 8;
-        font-size: 2em;
+    .footer-nav-links a {
+        font-size: 1em;
+        font-weight: 300;     
+    }
+    .nav-links a:hover, .footer-nav-links a:hover {
+        border: none !important;
     }
 
     /* ============================================================================================================ */
     /* MAIN */
     /* ============================================================================================================ */
     h2 {
-        font-weight: 450;
+        font-weight: 350;
         font-size: 1.5em;
     } 
     p {
-        font-weight: 400;
+        font-weight: 300;
         font-size: 1em;
     }
     .smaller{
-        font-weight: 400;
+        font-weight: 300;
         font-size: 1em;
     }
     .bullet-container {
-        font-weight: 450;
+        font-weight: 350;
         font-size: 0.8em;
     }
     .areas-covered-container {
@@ -138,5 +145,8 @@ p.thanks-msg{
     } 
     .footer-text {
         font-size: 0.8em;
+    }
+    textarea {
+        font-weight: 300;
     }
 }

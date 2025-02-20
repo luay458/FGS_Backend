@@ -1,9 +1,8 @@
 let menu = document.querySelector(".nav-links");
-function toggleMenu() {
-  // Toggle inline style if header is not scrolled (for mobile usage)
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
-}
 
+function toggleMenu() {
+  menu.classList.toggle("open");
+}
 document.addEventListener("DOMContentLoaded", function() {
   const header = document.querySelector("header");
   

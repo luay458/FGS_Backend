@@ -1,3 +1,21 @@
+:root {
+    --background-color: #11101c00;
+    --header-overlay: #050505b4;
+    --content-bg: #1d1d21;
+    --main-content-bg: #115168df;
+    --nav-hover-border: #4a4a4a93;
+    --nav-hover-bg: #dbcbcb2e;
+    --menu-bg: #333;
+    --footer-bg: #1a1a1a;
+    --input-bg: #9fb6c4ec;
+    --footer-button-color: #11516868;
+    --footer-button-color-hover: #80bcdd9d;
+    --inner-container-color: #0e44574d;
+    --font-1: #9699a6;
+    --font-2: #ececec;
+    --font-3: #ffffff90;
+    --font-2-hover: #b8b8b8;
+}
 /* ============================================================================================================ */
 /* GENERAL STYLES */
 /* ============================================================================================================ */
@@ -8,10 +26,17 @@ body, html {
     
     display: flex;
     flex-direction: column;
-
+    
+    background-color: var(--content-bg);
 }
 header, footer {
     z-index: 10; /* Make sure the header and footer are always above everything else */
+}
+
+/* Remove phone highlighting and outlining on buttons */
+button, button:focus, a, a:focus, input, textarea, select, .menu-toggle {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ============================================================================================================ */
@@ -33,7 +58,7 @@ header {
 /* Ensures both containers have the same overlay to look seamless */
 .navbar, .down-container {    
    /* Color and blur will overlay the bg image which is in header */
-   background: #050505b4;
+   background: var(--header-overlay);
    backdrop-filter: blur(2px);
 }
 /* Navbar is the container that holds everything on the top of the screen */
@@ -57,6 +82,7 @@ header {
 /* Container that holds the logo and navigation buttons, row is to ensure they stay side by side not stacked on top */
 /* ===================================================== */
 .nav-container{
+    width: -webkit-fill-available;
     display: flex;
     flex-direction: row;
 }
@@ -100,15 +126,15 @@ header {
     border-radius: 3px;
 }
 .nav-links a:hover {
-    border-color: #4a4a4a93;
-    background-color: #dbcbcb2e; /* Background color for header menu buttons only */
+    border-color: var(--nav-hover-border);
+    background-color: var(--nav-hover-bg);
 } 
 .nav-button.active {
-    border-bottom: 2px solid #fff; /* Underline for whichever header button is selected */
+    border-bottom: 2px solid var(--font-2);
 }
 .footer-nav-links a{
     border-style: none;
-    background-color: #00000000;
+    background-color: transparent;
 }
 /* Separator for footer nav buttons - e.g " Home | Services | About Us" */
 ul.footer-nav-links li:not(:last-child)::after {
@@ -126,7 +152,7 @@ ul.footer-nav-links li:not(:last-child)::after {
     transform-origin: center; /* Expand from center */
     width: 100%; /* Full width */
     height: 2px; /* Adjust thickness as desired */
-    background-color: #fff; /* Border color */
+    background-color: var(--font-2);
     transition: transform 0.3s ease; /* Adjust timing and easing as needed */
 }
 /* On hover, animate the pseudo-element to scale to full width */
@@ -141,6 +167,9 @@ ul.footer-nav-links li:not(:last-child)::after {
     display: none;
     background: none;
     border: none;
+    border-radius: 8px;
+    background: #11516868;
+    background-color: var(--menu-bg);
     cursor: pointer;
 }
 /* ===================================================== */
@@ -153,7 +182,7 @@ footer {
     justify-content: center;
 }
 .footer {
-    background: #1a1a1a;
+    background: var(--footer-bg);
     padding: 20px;
     text-align: center;
 }
@@ -194,26 +223,34 @@ footer {
 
     border: none;
     border-radius: 5px;
-    box-shadow: 2px 4px 5px hsl(0deg 0% 0% / 0.40) inset;
+    background-color: var(--input-bg);
+    box-shadow: 2px 2px 6px hsl(0deg 0% 0% / 0.60) inset;
 }
 /* Submit button*/
-.footer button {
+.footer button, #theme-toggle {
     padding: 10px;
     cursor: pointer;
     
     border: none;
     border-radius: 5px;
-    background: #ff6600;
+    background: var(--footer-button-color);
     box-shadow: 6px 6px 12.6px hsl(0deg 0% 0% / 0.90);
 }
-.footer button:hover {
-    background: #cc550074;
+.footer button:hover, #theme-toggle:hover {
+    background: var(--footer-button-color-hover);
 }
 .thanks-msg-container {
     display: none;
 } .thanks-msg-container.submit{
     display: flex;
 }
+
+.footer button:active, #theme-toggle:active {
+    padding: 9.5px;
+    outline: none;
+    box-shadow: 2px 2px 3px hsl(0deg 0% 0% / 0.60) inset;
+}
+
 @keyframes fadeInOut {
     0% { opacity: 0; }
     10%, 80% { opacity: 1; }
@@ -239,31 +276,17 @@ footer {
 .down-image{
     cursor: pointer;
     width: 5%;
-}
-@keyframes bounceAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    70% {
-        transform: translateY(0);
-    }
-    78% {
-      transform: translateY(-20px); /* bounce up */
-    }
-    86% {
-      transform: translateY(0);
-    }
-    92% {
-      transform: translateY(-20px); /* second bounce up */
-    }
-    100% {
-      transform: translateY(0);
-    }
-}
-.down-image {
     animation: bounceAnimation 5s infinite;
 }
 
+@keyframes bounceAnimation {
+    0% { transform: translateY(0); }
+    70% { transform: translateY(0); }
+    78% { transform: translateY(-20px); }
+    86% { transform: translateY(0); }
+    92% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
 /* Thanks for contacting 
 #message-bubble {
     position: absolute;
@@ -312,7 +335,7 @@ footer {
     padding: 2% 4%;
     
     border-radius: 5px;
-    background-color: #0c0c0c07;
+    background-color: var(--main-content-bg);
     box-shadow: rgba(0, 0, 0, 0.4) 3px 4px 8px;
 }
 /* ===================================================== */
@@ -323,8 +346,6 @@ footer {
 
     border-radius: 3px;
 
-    color: #3a3a3a;
-    background-color: #aeb6bc5c;
     box-shadow: 1.8px 3.7px 3.7px hsl(0deg 0% 0% / 0.44);
 }
 /* ===================================================== */
@@ -342,10 +363,13 @@ footer {
     border-radius: 3px;
     padding: 5px;
 
-    color: #3a3a3a;
-    background-color: #aeb6bc5c;
     box-shadow: 2px 3px 5px hsl(0deg 0% 0% / 0.33) inset;
 }
+
+.title-container, .bullets, .simple-bullets {
+    background-color: var(--inner-container-color);
+}
+
 li {
     margin-bottom: 2.5%;
 }
@@ -363,7 +387,6 @@ li {
     }
     .navbar {
         padding: 5px 20px;
-        background: #050505bb;
         justify-content: right;
         align-items: center;
     }
@@ -374,7 +397,7 @@ li {
     .home-page .down-container{
         display: none;
     }
-    /* Removing menu buttons, adjusting styles to fit in a box for the drop down */
+    /* Removing menu buttons, adjusting styles to fit in a box for the drop down 
     .nav-links {
         display: none;
         flex-direction: column;
@@ -396,13 +419,13 @@ li {
         border: none;
         margin: 0;
         background-color: #ffffff00;
-    }
-    /* Now the menu dropdown is displayed*/
+    }*/
+    /* Now the menu dropdown is displayed
     .menu-toggle {
         display: block;
         margin-right: 10vw;
 
-    }
+    }*/
     /* ============================================================================================================ */
     /* MAIN */
     /* ============================================================================================================ */
@@ -456,3 +479,43 @@ li {
 ::-webkit-scrollbar-thumb:hover {
     background: #696969;
 }  
+
+/* Responsive Styles */
+@media screen and (orientation: portrait) {
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: calc(100vw - 30px);
+        height: 28vw;
+        border-radius: 5px;
+        background-color: var(--menu-bg);
+        position: fixed;
+        top: 5px;
+        left: -100vw;
+        transition: left 1s ease;
+        box-shadow: 0px 8px 18px hsl(0deg 0% 0% / 0.8);
+    }
+
+    .nav-links.open {
+        left: 15px;
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 100;
+    } 
+    .menu-toggle:active {
+        box-shadow: 2px 2px 3px hsl(0deg 0% 0% / 0.60) inset;
+    }
+}
